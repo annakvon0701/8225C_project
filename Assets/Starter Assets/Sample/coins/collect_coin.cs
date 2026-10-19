@@ -4,17 +4,22 @@ public class collect_coin : MonoBehaviour
 {
     [SerializeField]
     private ParticleSystem effect;
+    [SerializeField]
+    private UpdateUI updateUI;
+    
+    private int coinsCollected = 0;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Coin"))
         {
             Destroy(other.gameObject);
-            collect_coin+;
-
-            effect.trasform.position = otner.transform.position;
-            effectPlay();
+            coinsCollected++;
+            
+            updateUI.UpdateCoinText(coinsCollected);
+            
+            effect.transform.position = other.transform.position;
+            effect.Play();
         }
     }
-    
 }
